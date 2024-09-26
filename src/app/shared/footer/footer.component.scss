@@ -1,0 +1,21 @@
+.pie {
+  display: flex;
+  justify-content: center; /* Centra los elementos horizontalmente */
+  align-items: center; /* Centra los elementos verticalmente */
+  gap: 60px; /* Espacio entre los elementos (puedes ajustarlo) */
+
+  p {
+    margin: 0; /* Elimina el margen de los párrafos para que estén alineados correctamente */
+  }
+
+  a {
+    padding: 5px;
+    color: white; /* Color del enlace */
+    text-decoration: none; /* Elimina el subrayado de los enlaces */
+    font-weight: bold; /* Puedes ajustar el estilo del texto */
+  }
+
+  a:hover {
+    text-decoration: underline; /* Agrega un subrayado al pasar el cursor sobre el enlace */
+  }
+}
