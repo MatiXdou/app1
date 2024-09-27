@@ -3,7 +3,11 @@
     <div class="pie">
       <p><a [routerLink]="['/']">Home</a></p>
       <p><a [routerLink]="['/contacto']">Contacto</a></p>
-      <p><a [routerLink]="['/store']">Store</a></p>
+      @if (usuario) {
+        <p><a [routerLink]="['/logout']">Logout</a></p>
+      } @else {
+        <p><a [routerLink]="['/login']">Login</a></p>
+      }
     </div>
   </ion-toolbar>
 </ion-footer>

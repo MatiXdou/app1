@@ -1,0 +1,21 @@
+<app-header></app-header>
+<ion-content>
+  <h1 style="text-align: center">Log In</h1>
+  <p style="text-align: center">Ingrese sus credenciales para acceder a la aplicación.</p>
+
+  <ion-item>
+    <ion-label>Usuario:</ion-label>
+    <ion-input [(ngModel)]="usuario" type="text" placeholder="Ingrese su usuario"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Contraseña:</ion-label>
+    <ion-input [(ngModel)]="clave" type="password" placeholder="Ingrese su contraseña"></ion-input>
+  </ion-item>
+
+  <ion-button (click)="login(usuario, clave)" expand="block" fill="clear" shape="round">Iniciar Sesión</ion-button>
+
+  <ion-text id="loginF" color="danger" *ngIf="loginFailed"><p>Usuario o clave incorrectos.</p></ion-text>
+
+</ion-content>
+<app-footer></app-footer>
