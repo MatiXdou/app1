@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatosPersonalesService {
 
-  nombre: string;
+  private nombreSubject = new BehaviorSubject<string>("");
+  nombre$ = this.nombreSubject.asObservable();
 
   constructor() { }
 
   setNombre(nombre: string) {
-    this.nombre = nombre;
+    this.nombreSubject.next(nombre);
   }
 
   getNombre(): string {
-    return this.nombre;
+    return this.nombreSubject.getValue();
   }
 
 }
