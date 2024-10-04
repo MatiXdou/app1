@@ -5,6 +5,7 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { RegistrarComponent } from './registrar/registrar.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'not-found', component: NotFoundComponent},
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent},
+  {path: 'registrar', component: RegistrarComponent},
 ];
 
 @NgModule({
