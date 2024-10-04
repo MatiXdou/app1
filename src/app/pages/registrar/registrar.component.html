@@ -1,43 +1,37 @@
+<app-header></app-header>
 <ion-content>
-  <app-header></app-header>
 
   <!-- Contenido de Registro -->
-  <p>Registrar nuevo usuario</p>
+  <p id="subtituloRegister">Registrar nuevo usuario</p>
 
   <ion-item>
-    <ion-label position="floating">Usuario</ion-label>
-    <ion-input [(ngModel)]="usuario"></ion-input>
+    <ion-input [(ngModel)]="usuario" label="Usuario:" labelPlacement="floating" placeholder="Ingrese su usuario"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label position="floating">Clave</ion-label>
-    <ion-input [(ngModel)]="clave" type="password"></ion-input>
+    <ion-input [(ngModel)]="clave" label="Contraseña:" labelPlacement="floating" placeholder="Ingrese su contraseña" type="password"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label position="floating">Nombre Completo</ion-label>
-    <ion-input [(ngModel)]="nombreCompleto"></ion-input>
+    <ion-input [(ngModel)]="nombreCompleto"  label="Nombre Completo:" labelPlacement="floating" placeholder="Ingrese su nombre completo"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label position="floating">Teléfono</ion-label>
-    <ion-input [(ngModel)]="telefono"></ion-input>
+    <ion-input [(ngModel)]="telefono"  label="Telefono:" labelPlacement="floating" placeholder="Ingrese su telefono"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label position="floating">Rol</ion-label>
-    <ion-select [(ngModel)]="rol">
+    <ion-select [(ngModel)]="rol" label="Rol:" labelPlacement="floating">
       <ion-select-option value="docente">Docente</ion-select-option>
       <ion-select-option value="alumno">Alumno</ion-select-option>
     </ion-select>
   </ion-item>
 
-  <ion-button (click)="registrar()">Registrar</ion-button>
+  <ion-button (click)="registrar()" expand="block" fill="clear" shape="round">Registrar</ion-button>
 
   <!-- Mostrar mensaje de error si el registro falla -->
   <ion-text color="danger" *ngIf="registroFallido">
     Ocurrió un error en el registro.
   </ion-text>
-
-  <app-footer></app-footer>
 </ion-content>
+<app-footer></app-footer>

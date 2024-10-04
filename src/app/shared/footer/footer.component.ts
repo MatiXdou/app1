@@ -1,4 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { UsuarioAPI } from 'src/app/models/UsuarioAPI.models';
 import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
@@ -11,10 +12,17 @@ export class FooterComponent  implements OnInit {
   usuario: string;
   private authService = inject(AuthService);
 
+  usuarioCompleto: UsuarioAPI;
+
   constructor() { }
 
   ngOnInit() {
     this.authService.usuario$.subscribe(usuario => { this.usuario = usuario; });
+
+    this.authService.usuarioCompleto$.subscribe(usuarioCompleto => {
+      this.usuarioCompleto = usuarioCompleto;
+    });
+
   }
 
 }

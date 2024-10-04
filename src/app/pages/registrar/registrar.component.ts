@@ -31,6 +31,11 @@ export class RegistrarComponent {
 
     try {
       await this.authService.registrarNuevoUsuario(nuevoUsuario);
+      this.usuario = '';
+      this.clave = '';
+      this.nombreCompleto = '';
+      this.telefono = ''
+      this.rol = 'alumno';
       this.router.navigate(['/login']);  // Redirige al login después del registro exitoso
     } catch (error) {
       this.registroFallido = true;  // Muestra un mensaje de error si el registro falla

@@ -1,5 +1,4 @@
-import { Component, inject,OnInit } from '@angular/core';
-import { DatosPersonalesService } from 'src/app/servicios/datos-personales.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -7,16 +6,9 @@ import { DatosPersonalesService } from 'src/app/servicios/datos-personales.servi
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent  implements OnInit {
-  nombre: string;
-  DatosPersonales = inject(DatosPersonalesService);
 
   constructor() { }
 
-  ngOnInit() { }
-
-  guardarNombre(){
-    this.DatosPersonales.setNombre(this.nombre);
-    console.log("Nombre Guardado: " + this.nombre);
-  }
+  ngOnInit() {}
 
 }
