@@ -15,9 +15,15 @@
           {{ asignatura.nombre }} - {{ asignatura.id }}
         </div>
       </div>
-      <ion-button fill="outline" class="generar-curre-button">Generar QR</ion-button>
+      <ion-button fill="outline" class="generar-curre-button" (click)="generarQR(asignatura.id)">Generar QR</ion-button>
     </ion-item>
   </ion-list>
+
+  <div class="mx-auto text-center">
+    <h2>Código QR</h2>
+    <h3>{{ qrData }}</h3>
+    <canvas #qrCanvas></canvas>
+  </div>
 
 </ion-content>
 <app-footer id="footer"></app-footer>

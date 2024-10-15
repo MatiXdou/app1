@@ -9,6 +9,7 @@ import { authGuard } from '../guard/auth.guard';
 import { redirectIfAuthGuard } from '../guard/redirect-if-auth.guard';
 import { AlumnoComponent } from './alumno/alumno.component';
 import { DocenteComponent } from './docente/docente.component';
+import { AsistenciaComponent } from './asistencia/asistencia.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent, canActivate: [authGuard]},
   {path: 'registrar', component: RegistrarComponent},
+  {path: 'asistencia/:codigo/:usuario/:fecha', component: AsistenciaComponent},
 ];
 
 @NgModule({

@@ -27,7 +27,7 @@ export class AuthService {
 
   webservice = inject(WebService); // Obtener el servicio de webService
   async buscarBD4(usuario: string, clave: string){
-    const url = 'https://66ff4dd02b9aac9c997ee137.mockapi.io/'
+    const url = 'https://670e7cbc3e7151861654bdf5.mockapi.io/'
     const res = await this.webservice.request('GET', url, 'users') as Array<UsuarioAPI>; // utiliza un tipo UsuarioAPI de models/UsuarioAPI.models.ts
 
     const user = res.find(u => u.user === usuario && u.pass === clave); // Buscar un usuario en la lista de usuarios de la API
@@ -45,7 +45,7 @@ export class AuthService {
   }
 
   async registrarNuevoUsuario(usuario: any) {
-    const url = 'https://66ff4dd02b9aac9c997ee137.mockapi.io/';
+    const url = 'https://670e7cbc3e7151861654bdf5.mockapi.io/';
     try {
       const res = await this.webservice.request('POST', url, 'users', usuario);
       console.log('Usuario registrado con éxito', res);

@@ -6,12 +6,13 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { HomeComponent } from './home/home.component';
 import { IonicModule } from '@ionic/angular';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RegistrarComponent } from './registrar/registrar.component';
 import { AlumnoComponent } from './alumno/alumno.component';
 import { DocenteComponent } from './docente/docente.component';
+import { AsistenciaComponent } from './asistencia/asistencia.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { DocenteComponent } from './docente/docente.component';
     LoginComponent,
     LogoutComponent,
     RegistrarComponent,
+    AsistenciaComponent,
   ],
   imports: [
     CommonModule,
@@ -30,6 +32,7 @@ import { DocenteComponent } from './docente/docente.component';
     SharedModule,
     IonicModule,
     FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class PagesModule { }
