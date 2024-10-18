@@ -14,8 +14,7 @@
     <ion-input [(ngModel)]="clave" type="password" label="Contraseña: " labelPlacement="floating" placeholder="Ingrese su contraseña"></ion-input>
   </ion-item>
 
-  <ion-button (click)="login(usuario, clave)" expand="block" fill="clear" shape="round">Iniciar Sesión</ion-button>
-
+  <ion-button (click)="login(usuario, clave)" expand="block" fill="clear" shape="round" [disabled]="!usuario || !clave">Iniciar Sesión</ion-button>
   <ion-text id="loginF" color="danger" *ngIf="loginFailed"><p>Usuario o clave incorrectos.</p></ion-text>
 
 </ion-content>

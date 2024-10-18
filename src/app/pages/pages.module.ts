@@ -13,6 +13,7 @@ import { CerrarSesionComponent } from './cerrar-sesion/cerrar-sesion.component';
 import { CompartidoModule } from '../compartido/compartido.module';
 import { InicioComponent } from './inicio/inicio.component';
 import { RouterLink } from '@angular/router';
+import { MostrarQrComponent } from './mostrar-qr/mostrar-qr.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { RouterLink } from '@angular/router';
     RegistrarseComponent,
     AsistenciaComponent,
     InicioComponent,
+    MostrarQrComponent,
   ],
   imports: [
     CommonModule,

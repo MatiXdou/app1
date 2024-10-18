@@ -1,0 +1,63 @@
+import { Component, ElementRef, inject, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import QRious from 'qrious';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/servicios/auth.service';
+
+@Component({
+  selector: 'app-mostrar-qr',
+  templateUrl: './mostrar-qr.component.html',
+  styleUrls: ['./mostrar-qr.component.scss'],
+})
+export class MostrarQrComponent  implements OnInit, OnDestroy {
+  private authService = inject(AuthService);
+  usuario: string;
+  subscriptionAuthService: Subscription;
+  asignaturaId: string;
+
+
+  private route = inject(ActivatedRoute);
+
+
+  qrData: string = '';
+  showQRCode: boolean = false;
+  @ViewChild('qrCanvas') qrCanvas!: ElementRef<HTMLCanvasElement>;
+  generarQR(asignaturaId: string) {
+    const fechaActual = new Date();
+    const año = fechaActual.getFullYear();
+    const mes = String(fechaActual.getMonth() + 1).padStart(2, '0');
+    const día = String(fechaActual.getDate()).padStart(2, '0');
+
+    const fecha = `${año}-${mes}-${día}`;
+    this.qrData = `http://localhost:8100/asistencia/${asignaturaId}/${this.usuario}/${fecha}`;
+
+    this.showQRCode = true;
+    this.createQR();
+  }
+
+  createQR() {
+    const qr = new QRious({
+      element: this.qrCanvas.nativeElement,
+      value: this.qrData,
+      size: 256,
+      level: 'M'
+    });
+  }
+
+  constructor() { }
+
+  ngOnInit() {
+    this.subscriptionAuthService = this.authService.usuario$.subscribe(usuario => {
+      this.usuario = usuario
+      console.log('Docente:', usuario);
+    });
+
+    this.route.paramMap.subscribe(params => {
+      this.asignaturaId = params.get('id');
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscriptionAuthService?.unsubscribe();
+  }
+}

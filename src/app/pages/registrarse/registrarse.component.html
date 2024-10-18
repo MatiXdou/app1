@@ -5,29 +5,30 @@
   <p style="text-align: center;">Ingrese sus datos para crear una cuenta.</p>
 
   <ion-item>
-    <ion-input [(ngModel)]="usuario" label="Usuario:" labelPlacement="floating" placeholder="Ingrese su usuario"></ion-input>
+    <ion-input [(ngModel)]="usuario" label="Usuario:" labelPlacement="floating" placeholder="Ingrese su usuario" required></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-input [(ngModel)]="clave" label="Contraseña:" labelPlacement="floating" placeholder="Ingrese su contraseña" type="password"></ion-input>
+    <ion-input [(ngModel)]="clave" label="Contraseña:" labelPlacement="floating" placeholder="Ingrese su contraseña" type="password" required></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-input [(ngModel)]="nombreCompleto"  label="Nombre Completo:" labelPlacement="floating" placeholder="Ingrese su nombre completo"></ion-input>
+    <ion-input [(ngModel)]="nombreCompleto"  label="Nombre Completo:" labelPlacement="floating" placeholder="Ingrese su nombre completo" required></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-input [(ngModel)]="telefono"  label="Telefono:" labelPlacement="floating" placeholder="Ingrese su telefono"></ion-input>
+    <ion-input [(ngModel)]="telefono"  label="Telefono:" labelPlacement="floating" placeholder="Ingrese su telefono" required></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-select [(ngModel)]="rol" label="Rol:" labelPlacement="floating">
+    <ion-select [(ngModel)]="rol" label="Rol:" labelPlacement="floating" required>
       <ion-select-option value="docente" color="light">Docente</ion-select-option>
       <ion-select-option value="alumno">Alumno</ion-select-option>
     </ion-select>
   </ion-item>
 
-  <ion-button (click)="registrar()" expand="block" fill="clear" shape="round">Registrarse</ion-button>
+  <ion-button (click)="registrar()" expand="block" fill="clear" shape="round" [disabled]="!usuario || !clave || !nombreCompleto || !telefono || !rol">Registrarse</ion-button>
+
 
   <ion-text color="danger" *ngIf="registroFallido">
     Ocurrió un error en el registro.

@@ -1,0 +1,23 @@
+<app-cabecera id="header"></app-cabecera>
+<ion-content>
+  <ion-toolbar color="transparent" translucent>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="docente"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <div class="ion-text-center" style="padding: 10px 0 0 0;">
+    <ion-button
+          fill="outline"
+          class="generar-curre-button"
+          (click)="generarQR(asignaturaId)">
+          Generar QR
+    </ion-button>
+  </div>
+
+  <div class="ion-text-center" id="qr">
+    <h2>Código QR</h2>
+    <canvas #qrCanvas></canvas>
+  </div>
+</ion-content>
+<app-pie id="footer"></app-pie>

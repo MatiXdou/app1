@@ -17,16 +17,6 @@ export class AlumnoComponent  implements OnInit {
     { nombre: 'PROCESO DE PORTAFOLIO', id: 'APY4478' },
   ];
 
-  selectedAsignaturaId: String | null = null;
-
-  toggleQRButton(asignaturaId: String) {
-    if (this.selectedAsignaturaId === asignaturaId) {
-      this.selectedAsignaturaId = null; // Deselect if already selected
-    } else {
-      this.selectedAsignaturaId = asignaturaId; // Select new asignatura
-    }
-  }
-
   constructor() { }
 
   ngOnInit() {}

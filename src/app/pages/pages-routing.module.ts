@@ -9,17 +9,18 @@ import { PagNoEncontradaComponent } from './pag-no-encontrada/pag-no-encontrada.
 import { RegistrarseComponent } from './registrarse/registrarse.component';
 import { IniciarSesionComponent } from './iniciar-sesion/iniciar-sesion.component';
 import { CerrarSesionComponent } from './cerrar-sesion/cerrar-sesion.component';
-import { InicioComponent } from './inicio/inicio.component';
+import { MostrarQrComponent } from './mostrar-qr/mostrar-qr.component';
 
 const routes: Routes = [
   {path: '', component: IniciarSesionComponent},
-  {path: 'alumno', component: AlumnoComponent, canActivate: [authGuard]},
-  {path: 'docente', component: DocenteComponent, canActivate: [authGuard]},
+  {path: 'alumno', component: AlumnoComponent, },
+  {path: 'docente', component: DocenteComponent, },
   {path: 'pagina-no-encontrada', component: PagNoEncontradaComponent},
   {path: 'iniciar-sesion', component: IniciarSesionComponent, canActivate: [redirectIfAuthGuard]},
   {path: 'cerrar-sesion', component: CerrarSesionComponent, canActivate: [authGuard]},
   {path: 'registrarse', component: RegistrarseComponent},
   {path: 'asistencia/:codigo/:usuario/:fecha', component: AsistenciaComponent},
+  {path: 'mostrar-qr/:id', component: MostrarQrComponent},
 ];
 
 @NgModule({
