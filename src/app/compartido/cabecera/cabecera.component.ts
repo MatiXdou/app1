@@ -1,17 +1,15 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  selector: 'app-cabecera',
+  templateUrl: './cabecera.component.html',
+  styleUrls: ['./cabecera.component.scss'],
 })
-export class HeaderComponent  implements OnInit, OnDestroy {
-
+export class CabeceraComponent  implements OnInit, OnDestroy {
   usuario: string;
   private authService = inject(AuthService);
-
   subscriptionsAuthService: Subscription;
 
   constructor() { }
@@ -25,5 +23,4 @@ export class HeaderComponent  implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscriptionsAuthService?.unsubscribe();
   }
-
 }

@@ -10,7 +10,7 @@ export const redirectIfAuthGuard: CanActivateFn = (route, state) => {
   return authService.isLoggedIn().pipe(
     map(isAuthenticated => {
       if (isAuthenticated) {
-        router.navigate(['/home']); // Redirigir a la página de inicio si ya está autenticado
+        router.navigate(['/inicio']); // Redirigir a la página de inicio si ya está autenticado
         return false; // Bloquear el acceso a la página de login
       } else {
         return true; // Permitir el acceso a la página de login si no está autenticado

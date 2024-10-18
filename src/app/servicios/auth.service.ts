@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { WebService } from './web.service';
-import { UsuarioAPI } from '../models/UsuarioAPI.models';
+import { UsuarioAPI } from '../models/usuarioapi.models';
 
 @Injectable({
   providedIn: 'root'

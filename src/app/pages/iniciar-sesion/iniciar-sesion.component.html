@@ -1,0 +1,22 @@
+<app-cabecera></app-cabecera>
+<ion-content>
+  @if (isLoading) {
+    <ion-spinner name="bubbles"></ion-spinner>
+  }
+
+  <h1 style="text-align: center">Iniciar Sesión</h1>
+
+  <ion-item>
+    <ion-input [(ngModel)]="usuario" type="text" label="Usuario: " labelPlacement="floating" placeholder="Ingrese su usuario"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input [(ngModel)]="clave" type="password" label="Contraseña: " labelPlacement="floating" placeholder="Ingrese su contraseña"></ion-input>
+  </ion-item>
+
+  <ion-button (click)="login(usuario, clave)" expand="block" fill="clear" shape="round">Iniciar Sesión</ion-button>
+
+  <ion-text id="loginF" color="danger" *ngIf="loginFailed"><p>Usuario o clave incorrectos.</p></ion-text>
+
+</ion-content>
+<app-pie></app-pie>

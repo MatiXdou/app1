@@ -1,38 +1,39 @@
-import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { PagesRoutingModule } from './pages-routing.module';
-import { HomeComponent } from './home/home.component';
 import { IonicModule } from '@ionic/angular';
-import { NotFoundComponent } from './not-found/not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './login/login.component';
-import { LogoutComponent } from './logout/logout.component';
-import { RegistrarComponent } from './registrar/registrar.component';
 import { AlumnoComponent } from './alumno/alumno.component';
 import { DocenteComponent } from './docente/docente.component';
 import { AsistenciaComponent } from './asistencia/asistencia.component';
+import { PagNoEncontradaComponent } from './pag-no-encontrada/pag-no-encontrada.component';
+import { RegistrarseComponent } from './registrarse/registrarse.component';
+import { IniciarSesionComponent } from './iniciar-sesion/iniciar-sesion.component';
+import { CerrarSesionComponent } from './cerrar-sesion/cerrar-sesion.component';
+import { CompartidoModule } from '../compartido/compartido.module';
+import { InicioComponent } from './inicio/inicio.component';
+import { RouterLink } from '@angular/router';
 
 
 @NgModule({
   declarations: [
-    HomeComponent,
     AlumnoComponent,
     DocenteComponent,
-    NotFoundComponent,
-    LoginComponent,
-    LogoutComponent,
-    RegistrarComponent,
+    PagNoEncontradaComponent,
+    IniciarSesionComponent,
+    CerrarSesionComponent,
+    RegistrarseComponent,
     AsistenciaComponent,
+    InicioComponent,
   ],
   imports: [
     CommonModule,
     PagesRoutingModule,
-    SharedModule,
+    CompartidoModule,
     IonicModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterLink,
   ]
 })
 export class PagesModule { }

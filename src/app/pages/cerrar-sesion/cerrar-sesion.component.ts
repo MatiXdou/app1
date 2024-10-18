@@ -2,12 +2,11 @@ import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
-  selector: 'app-logout',
-  templateUrl: './logout.component.html',
-  styleUrls: ['./logout.component.scss'],
+  selector: 'app-cerrar-sesion',
+  templateUrl: './cerrar-sesion.component.html',
+  styleUrls: ['./cerrar-sesion.component.scss'],
 })
-export class LogoutComponent  implements OnInit {
-
+export class CerrarSesionComponent  implements OnInit {
   private authService = inject(AuthService);
 
   constructor() { }

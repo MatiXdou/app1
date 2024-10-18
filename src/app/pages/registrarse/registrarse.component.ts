@@ -1,14 +1,13 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
-  selector: 'app-registrar',
-  templateUrl: './registrar.component.html',
-  styleUrls: ['./registrar.component.scss'],
+  selector: 'app-registrarse',
+  templateUrl: './registrarse.component.html',
+  styleUrls: ['./registrarse.component.scss'],
 })
-export class RegistrarComponent {
-
+export class RegistrarseComponent implements OnInit {
   usuario: string = '';
   clave: string = '';
   nombreCompleto: string = '';
@@ -41,4 +40,9 @@ export class RegistrarComponent {
       this.registroFallido = true;  // Muestra un mensaje de error si el registro falla
     }
   }
+
+  constructor() { }
+
+  ngOnInit() {}
+
 }

@@ -1,8 +1,8 @@
-<app-header></app-header>
+<app-cabecera></app-cabecera>
 <ion-content>
 
-  <!-- Contenido de Registro -->
-  <p id="subtituloRegister">Registrar nuevo usuario</p>
+  <h1 style="text-align: center;">Registrarse</h1>
+  <p style="text-align: center;">Ingrese sus datos para crear una cuenta.</p>
 
   <ion-item>
     <ion-input [(ngModel)]="usuario" label="Usuario:" labelPlacement="floating" placeholder="Ingrese su usuario"></ion-input>
@@ -22,16 +22,15 @@
 
   <ion-item>
     <ion-select [(ngModel)]="rol" label="Rol:" labelPlacement="floating">
-      <ion-select-option value="docente">Docente</ion-select-option>
+      <ion-select-option value="docente" color="light">Docente</ion-select-option>
       <ion-select-option value="alumno">Alumno</ion-select-option>
     </ion-select>
   </ion-item>
 
-  <ion-button (click)="registrar()" expand="block" fill="clear" shape="round">Registrar</ion-button>
+  <ion-button (click)="registrar()" expand="block" fill="clear" shape="round">Registrarse</ion-button>
 
-  <!-- Mostrar mensaje de error si el registro falla -->
   <ion-text color="danger" *ngIf="registroFallido">
     Ocurrió un error en el registro.
   </ion-text>
 </ion-content>
-<app-footer></app-footer>
+<app-pie></app-pie>

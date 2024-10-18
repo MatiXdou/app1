@@ -1,0 +1,34 @@
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        @if (usuario) {
+          @if (usuarioCompleto.rol === 'docente') {
+            <ion-tab-button tab="docente" [routerLink]="['/docente']">
+              <ion-label>Docente</ion-label>
+              <ion-ripple-effect></ion-ripple-effect>
+            </ion-tab-button>
+          } @else {
+            <ion-tab-button tab="alumno" [routerLink]="['/alumno']">
+              <ion-label>Alumno</ion-label>
+              <ion-ripple-effect></ion-ripple-effect>
+            </ion-tab-button>
+          }
+          <ion-tab-button tab="cerrar-sesion" [routerLink]="['/cerrar-sesion']">
+            <ion-label>Cerrar Sesión</ion-label>
+            <ion-ripple-effect></ion-ripple-effect>
+          </ion-tab-button>
+        } @else {
+          <ion-tab-button tab="iniciar-sesion" [routerLink]="['/iniciar-sesion']">
+            <ion-label>Iniciar Sesión</ion-label>
+            <ion-ripple-effect></ion-ripple-effect>
+          </ion-tab-button>
+          <ion-tab-button tab="registrarse" [routerLink]="['/registrarse']">
+            <ion-label>Registrarse</ion-label>
+            <ion-ripple-effect></ion-ripple-effect>
+          </ion-tab-button>
+        }
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

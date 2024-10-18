@@ -8,10 +8,24 @@ import { Component, OnInit } from '@angular/core';
 export class AlumnoComponent  implements OnInit {
 
   asignaturas = [
-    { nombre: 'Programación en Python', codigo: 'INF101' },
-    { nombre: 'Bases de Datos', codigo: 'INF102' },
-    { nombre: 'Algoritmos y Estructuras de Datos', codigo: 'INF103' },
+    { nombre: 'DISEÑO Y GESTIÓN DE REQUISITOS', id: 'PRY1111' },
+    { nombre: 'HABILIDADES BÁSICAS DE COMUNICACIÓN', id: 'PLC1101' },
+    { nombre: 'INGLÉS BÁSICO I', id: 'INU1101' },
+    { nombre: 'MODELAMIENTO DE BASE DE DATOS', id: 'MDY1131' },
+    { nombre: 'NIVELACIÓN MATEMÁTICA', id: 'MAT1110' },
+    { nombre: 'PROGRAMACIÓN DE ALGORITMOS', id: 'PGY1121' },
+    { nombre: 'PROCESO DE PORTAFOLIO', id: 'APY4478' },
   ];
+
+  selectedAsignaturaId: String | null = null;
+
+  toggleQRButton(asignaturaId: String) {
+    if (this.selectedAsignaturaId === asignaturaId) {
+      this.selectedAsignaturaId = null; // Deselect if already selected
+    } else {
+      this.selectedAsignaturaId = asignaturaId; // Select new asignatura
+    }
+  }
 
   constructor() { }
 

@@ -1,29 +1,31 @@
-<app-header id="header"></app-header>
+<app-cabecera id="header"></app-cabecera>
 <ion-content>
+  <ion-toolbar>
+    <h1 style="text-align: center;">Asignaturas</h1>
+  </ion-toolbar>
 
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Asignaturas</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-
-  <ion-list>
-    <ion-item *ngFor="let asignatura of asignaturas">
-      <div class="asignatura-container">
+  <ion-list [inset]="true">
+    <ion-item *ngFor="let asignatura of asignaturas" [button]="true">
+      <div class="asignatura-container" (click)="toggleQRButton(asignatura.id)">
         <div class="asignatura-nombre">
           {{ asignatura.nombre }} - {{ asignatura.id }}
         </div>
       </div>
-      <ion-button fill="outline" class="generar-curre-button" (click)="generarQR(asignatura.id)">Generar QR</ion-button>
+
+      <ion-button
+        *ngIf="selectedAsignaturaId === asignatura.id"
+        fill="outline"
+        class="generar-curre-button"
+        (click)="generarQR(asignatura.id)">
+        Generar QR
+      </ion-button>
     </ion-item>
   </ion-list>
 
-  <div class="mx-auto text-center">
+  <div class="ion-text-center" id="qr">
     <h2>Código QR</h2>
-    <h3>{{ qrData }}</h3>
     <canvas #qrCanvas></canvas>
   </div>
 
 </ion-content>
-<app-footer id="footer"></app-footer>
+<app-pie id="footer"></app-pie>
