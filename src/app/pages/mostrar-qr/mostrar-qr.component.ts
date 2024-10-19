@@ -15,13 +15,12 @@ export class MostrarQrComponent  implements OnInit, OnDestroy {
   subscriptionAuthService: Subscription;
   asignaturaId: string;
 
-
   private route = inject(ActivatedRoute);
-
 
   qrData: string = '';
   showQRCode: boolean = false;
   @ViewChild('qrCanvas') qrCanvas!: ElementRef<HTMLCanvasElement>;
+
   generarQR(asignaturaId: string) {
     const fechaActual = new Date();
     const año = fechaActual.getFullYear();
@@ -32,10 +31,10 @@ export class MostrarQrComponent  implements OnInit, OnDestroy {
     this.qrData = `http://localhost:8100/asistencia/${asignaturaId}/${this.usuario}/${fecha}`;
 
     this.showQRCode = true;
-    this.createQR();
+    this.crearQR();
   }
 
-  createQR() {
+  crearQR() {
     const qr = new QRious({
       element: this.qrCanvas.nativeElement,
       value: this.qrData,
@@ -49,7 +48,6 @@ export class MostrarQrComponent  implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscriptionAuthService = this.authService.usuario$.subscribe(usuario => {
       this.usuario = usuario
-      console.log('Docente:', usuario);
     });
 
     this.route.paramMap.subscribe(params => {

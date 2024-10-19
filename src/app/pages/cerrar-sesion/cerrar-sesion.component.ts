@@ -12,7 +12,7 @@ export class CerrarSesionComponent  implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.authService.logout();
+    this.authService.cerrarSesion();
   }
 
 }

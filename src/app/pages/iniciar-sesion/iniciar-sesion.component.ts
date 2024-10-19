@@ -9,7 +9,6 @@ import { AuthService } from 'src/app/servicios/auth.service';
   styleUrls: ['./iniciar-sesion.component.scss'],
 })
 export class IniciarSesionComponent  implements OnInit {
-
   usuario: string = '';
   clave: string = '';
 
@@ -27,9 +26,9 @@ export class IniciarSesionComponent  implements OnInit {
   constructor() { }
 
   isLoading: boolean = false;
-  async login(usuario: string, clave: string) {
+  async inicioSesion(usuario: string, clave: string) {
     this.isLoading = true;
-    await this.authService.buscarBD4(usuario, clave);
+    await this.authService.buscarUsuario(usuario, clave);
     this.isLoading = false;
 
     this.authService.isAuthenticated$.subscribe(isAuthenticated => {
@@ -38,13 +37,9 @@ export class IniciarSesionComponent  implements OnInit {
           this.usuario = '';
           this.clave = '';
           if (usuarioCompleto.rol === "docente") {
-            this.usuario = '';
-            this.clave = '';
             this.router.navigate(['/docente']);
           }
           else{
-            this.usuario = '';
-            this.clave = '';
             this.router.navigate(['/alumno']);
           }
         } else {

@@ -6,7 +6,8 @@
     </ion-buttons>
   </ion-toolbar>
 
-  <div class="ion-text-center" style="padding: 10px 0 0 0;">
+  <div class="ion-text-center" style="padding: 10px 0 10px 0;">
+    <h5>(Nombre Asignatura) - {{asignaturaId}}</h5>
     <ion-button
           fill="outline"
           class="generar-curre-button"
@@ -15,8 +16,7 @@
     </ion-button>
   </div>
 
-  <div class="ion-text-center" id="qr">
-    <h2>Código QR</h2>
+  <div class="ion-text-center">
     <canvas #qrCanvas></canvas>
   </div>
 </ion-content>

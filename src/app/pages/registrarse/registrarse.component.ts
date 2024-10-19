@@ -12,7 +12,7 @@ export class RegistrarseComponent implements OnInit {
   clave: string = '';
   nombreCompleto: string = '';
   telefono: string = '';
-  rol: string = 'alumno'; // Valor por defecto 'alumno'
+  rol: string = 'alumno';
 
   private authService = inject(AuthService);
   private router = inject(Router);
@@ -20,7 +20,7 @@ export class RegistrarseComponent implements OnInit {
   registroFallido: boolean = false;
 
   async registrar() {
-    const nuevoUsuario = {
+    const Usuario = {
       user: this.usuario,
       pass: this.clave,
       name: this.nombreCompleto,
@@ -29,20 +29,20 @@ export class RegistrarseComponent implements OnInit {
     };
 
     try {
-      await this.authService.registrarNuevoUsuario(nuevoUsuario);
+      await this.authService.registrarUsuario(Usuario);
       this.usuario = '';
       this.clave = '';
       this.nombreCompleto = '';
       this.telefono = ''
       this.rol = 'alumno';
-      this.router.navigate(['/login']);  // Redirige al login después del registro exitoso
+      this.router.navigate(['/iniciar-sesion']);
     } catch (error) {
-      this.registroFallido = true;  // Muestra un mensaje de error si el registro falla
+      this.registroFallido = true;
     }
   }
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }

@@ -8,16 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AsistenciaComponent  implements OnInit {
 
-  private route = inject(ActivatedRoute);
-
-  constructor() {
-    this.route.params.subscribe(params => {
-      console.log(params);
-      console.log('Código: ' + params['codigo']);
-      console.log('Fecha: ' + params['fecha']);
-      console.log('Usuario: ' + params['usuario']);
-    });
-  }
+  constructor() { }
 
   ngOnInit() {
     console.log('Asistencia OnInit!');

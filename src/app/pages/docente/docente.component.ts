@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
   selector: 'app-docente',
@@ -20,16 +18,6 @@ export class DocenteComponent  implements OnInit {
     { nombre: 'PROGRAMACIÓN DE ALGORITMOS', id: 'PGY1121' },
     { nombre: 'PROCESO DE PORTAFOLIO', id: 'APY4478' },
   ];
-
-  selectedAsignaturaId: String | null = null;
-
-  toggleQRButton(asignaturaId: String) {
-    if (this.selectedAsignaturaId === asignaturaId) {
-      this.selectedAsignaturaId = null;
-    } else {
-      this.selectedAsignaturaId = asignaturaId;
-    }
-  }
 
   qrData: string = '';
   showQRCode: boolean = false;
