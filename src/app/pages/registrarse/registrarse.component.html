@@ -1,37 +1,37 @@
 <app-cabecera></app-cabecera>
 <ion-content>
+  @if (cargando) {
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+  }
 
   <h1 style="text-align: center;">Registrarse</h1>
-  <p style="text-align: center;">Ingrese sus datos para crear una cuenta.</p>
 
-  <ion-item>
-    <ion-input [(ngModel)]="usuario" label="Usuario:" labelPlacement="floating" placeholder="Ingrese su usuario" required></ion-input>
-  </ion-item>
+  <ion-list [inset]="true">
+    <ion-item color="light">
+      <ion-input [(ngModel)]="usuario" label="Usuario:" labelPlacement="floating" placeholder="Ingrese su usuario" required></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-input [(ngModel)]="clave" label="Contraseña:" labelPlacement="floating" placeholder="Ingrese su contraseña" type="password" required></ion-input>
-  </ion-item>
+    <ion-item color="light">
+      <ion-input [(ngModel)]="contra" label="Contraseña:" labelPlacement="floating" placeholder="Ingrese su contraseña" type="password" required></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-input [(ngModel)]="nombreCompleto"  label="Nombre Completo:" labelPlacement="floating" placeholder="Ingrese su nombre completo" required></ion-input>
-  </ion-item>
+    <ion-item color="light">
+      <ion-input [(ngModel)]="nombreCompleto"  label="Nombre Completo:" labelPlacement="floating" placeholder="Ingrese su nombre completo" required></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-input [(ngModel)]="telefono"  label="Telefono:" labelPlacement="floating" placeholder="Ingrese su telefono" required></ion-input>
-  </ion-item>
+    <ion-item color="light">
+      <ion-input [(ngModel)]="telefono"  label="Telefono:" labelPlacement="floating" placeholder="Ingrese su telefono" required></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-select [(ngModel)]="rol" label="Rol:" labelPlacement="floating" required>
-      <ion-select-option value="docente" color="light">Docente</ion-select-option>
-      <ion-select-option value="alumno">Alumno</ion-select-option>
-    </ion-select>
-  </ion-item>
+    <ion-item color="light">
+      <ion-select [(ngModel)]="rol" label="Rol:" labelPlacement="floating" required>
+        <ion-select-option value="docente" color="light">Docente</ion-select-option>
+        <ion-select-option value="alumno">Alumno</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
 
-  <ion-button (click)="registrar()" expand="block" fill="clear" shape="round" [disabled]="!usuario || !clave || !nombreCompleto || !telefono || !rol">Registrarse</ion-button>
+  <ion-button (click)="registrar()" expand="block" fill="clear" shape="round" [disabled]="!usuario || !contra || !nombreCompleto || !telefono || !rol">Registrarse</ion-button>
 
-
-  <ion-text color="danger" *ngIf="registroFallido">
-    Ocurrió un error en el registro.
-  </ion-text>
 </ion-content>
 <app-pie></app-pie>

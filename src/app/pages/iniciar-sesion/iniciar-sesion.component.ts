@@ -1,7 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/servicios/auth.service';
+import { UsuarioAPI } from 'src/app/models/usuarioapi.models';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -10,44 +11,58 @@ import { AuthService } from 'src/app/servicios/auth.service';
 })
 export class IniciarSesionComponent  implements OnInit {
   usuario: string = '';
-  clave: string = '';
+  contra: string = '';
+  mensaje: string = '';
+  cargando: boolean = false;
 
   private authService = inject(AuthService);
   private router = inject(Router);
+  private alertController = inject(AlertController);
 
-  private loginFailedSubject = new BehaviorSubject<boolean>(false);
-  loginFailed$ = this.loginFailedSubject.asObservable();
-  loginFailed: boolean;
-
-  ngOnInit(): void {
-    this.authService.loginFailed$.subscribe(loginFailed => this.loginFailed = loginFailed);
-  }
+  isAuthenticated: boolean;
+  usuarioCompleto: UsuarioAPI;
 
   constructor() { }
 
-  isLoading: boolean = false;
-  async inicioSesion(usuario: string, clave: string) {
-    this.isLoading = true;
-    await this.authService.buscarUsuario(usuario, clave);
-    this.isLoading = false;
+  ngOnInit(): void {
+    this.authService.isAuthenticated$.subscribe(isAuthenticated => this.isAuthenticated = isAuthenticated);
+    this.authService.usuarioCompleto$.subscribe(usuarioCompleto => this.usuarioCompleto = usuarioCompleto);
+  }
 
-    this.authService.isAuthenticated$.subscribe(isAuthenticated => {
-      this.authService.usuarioCompleto$.subscribe(usuarioCompleto => {
-        if (isAuthenticated) {
-          this.usuario = '';
-          this.clave = '';
-          if (usuarioCompleto.rol === "docente") {
-            this.router.navigate(['/docente']);
-          }
-          else{
-            this.router.navigate(['/alumno']);
-          }
-        } else {
-          this.loginFailed = true;
-        }
-      });
+  async inicioSesion(usuario: string, contra: string) {
+    this.cargando = true;
+    await this.authService.buscarUsuario(usuario, contra);
+
+    if (this.isAuthenticated) {
+      this.usuario = '';
+      this.contra = '';
+      if (this.usuarioCompleto.rol === "docente") {
+        this.cargando = false;
+        this.mensaje = 'Inicio de sesión exitoso.';
+        await this.mostrarMensaje('Éxito', this.mensaje);
+        this.router.navigate(['/docente']);
+      }
+      else{
+        this.cargando = false;
+        this.mensaje = 'Inicio de sesión exitoso.';
+        await this.mostrarMensaje('Éxito', this.mensaje);
+        this.router.navigate(['/alumno']);
+      }
+    } else {
+      this.cargando = false;
+      this.mensaje = 'usuario o contraseña incorrecto.';
+      await this.mostrarMensaje('Error', this.mensaje);
+    }
+
+  }
+
+  async mostrarMensaje(cabecera: string, mensaje: string) {
+    const alert = await this.alertController.create({
+      header: cabecera,
+      message: mensaje,
+      buttons: ['Entendido']
     });
-
+    await alert.present();
   }
 
 }

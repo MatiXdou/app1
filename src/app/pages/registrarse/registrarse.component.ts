@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
@@ -9,36 +10,69 @@ import { AuthService } from 'src/app/servicios/auth.service';
 })
 export class RegistrarseComponent implements OnInit {
   usuario: string = '';
-  clave: string = '';
+  contra: string = '';
   nombreCompleto: string = '';
   telefono: string = '';
   rol: string = 'alumno';
 
+  cargando: boolean = false;
+  mensaje: string = '';
+
   private authService = inject(AuthService);
+  private alertController = inject(AlertController);
   private router = inject(Router);
 
-  registroFallido: boolean = false;
-
   async registrar() {
-    const Usuario = {
+    this.mensaje = '';
+    this.cargando = true;
+    const existeUsuario = await this.validarUsuario(this.usuario);
+
+    if (existeUsuario) {
+      this.cargando = false;
+      this.mensaje = 'Nombre de usuario en uso. Elija otro.';
+      await this.mostrarMensaje('Error', this.mensaje);
+      return;
+    }
+
+    const usuarioNuevo = {
       user: this.usuario,
-      pass: this.clave,
+      pass: this.contra,
       name: this.nombreCompleto,
       phone: this.telefono,
       rol: this.rol
     };
 
     try {
-      await this.authService.registrarUsuario(Usuario);
-      this.usuario = '';
-      this.clave = '';
-      this.nombreCompleto = '';
-      this.telefono = ''
-      this.rol = 'alumno';
+      await this.authService.registrarUsuario(usuarioNuevo);
+      this.cargando = false;
+      this.mensaje = 'Usuario registrado de manera exitosa.';
+      await this.mostrarMensaje('Éxito', this.mensaje);
       this.router.navigate(['/iniciar-sesion']);
     } catch (error) {
-      this.registroFallido = true;
+      this.cargando = false;
+      this.mensaje = 'Error al registrar. Inténtalo nuevamente.';
+      await this.mostrarMensaje('Error', this.mensaje);
     }
+  }
+
+  async validarUsuario(usuario: string): Promise<boolean> {
+    try {
+      const usuariosExistentes = await this.authService.analizaUsuario();
+      return usuariosExistentes.some(u => u.user === usuario);
+    } catch (error) {
+      this.mensaje = 'Error al validar usuario';
+      await this.mostrarMensaje('Error', this.mensaje);
+      return true;
+    }
+  }
+
+  async mostrarMensaje(cabecera: string, mensaje: string) {
+    const alert = await this.alertController.create({
+      header: cabecera,
+      message: mensaje,
+      buttons: ['Entendido']
+    });
+    await alert.present();
   }
 
   constructor() { }

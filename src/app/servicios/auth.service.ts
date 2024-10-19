@@ -16,9 +16,6 @@ export class AuthService {
   private usuarioCompletoSubject = new BehaviorSubject<UsuarioAPI>(null);
   usuarioCompleto$ = this.usuarioCompletoSubject.asObservable();
 
-  private loginFailedSubject = new BehaviorSubject<boolean>(false);
-  loginFailed$ = this.loginFailedSubject.asObservable();
-
   constructor() { }
 
   webservice = inject(WebService);
@@ -30,17 +27,33 @@ export class AuthService {
       this.isAuthenticatedSubject.next(true);
       this.usuarioSubject.next(user.name);
       this.usuarioCompletoSubject.next(user);
-      this.loginFailedSubject.next(false);
     } else {
       this.isAuthenticatedSubject.next(false);
-      this.loginFailedSubject.next(true);
     }
   }
+
 
   async registrarUsuario(usuario: any) {
     const url = 'https://670e7cbc3e7151861654bdf5.mockapi.io/';
     try {
+      const revisaUsuarios = await this.analizaUsuario();
+      const usuarioExiste = revisaUsuarios.find(u => u.user === usuario.user);
+
+      if (usuarioExiste) {
+        throw new Error('El usuario ya está registrado, intenta con otro.');
+      }
+
       const res = await this.webservice.request('POST', url, 'users', usuario);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async analizaUsuario(): Promise<UsuarioAPI[]> {
+    const url = 'https://670e7cbc3e7151861654bdf5.mockapi.io/';
+    try {
+      const res = await this.webservice.request('GET', url, 'users') as Array<UsuarioAPI>;
+      return res;
     } catch (error) {
       throw error;
     }
@@ -51,7 +64,6 @@ export class AuthService {
     this.usuarioSubject.next('');
     this.usuarioCompletoSubject.next(null);
     this.isAuthenticatedSubject.next(false);
-    this.loginFailedSubject.next(false);
   }
 
   isLoggedIn() {
