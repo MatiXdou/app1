@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -22,8 +22,8 @@ export class DocenteComponent  implements OnInit {
   qrData: string = '';
   showQRCode: boolean = false;
 
-  irMostrarQR(asignaturaId: string){
-    this.router.navigate([`/mostrar-qr/${asignaturaId}`]);
+  irMostrarQR(asignaturaId: string, asignaturaNombre){
+    this.router.navigate([`/mostrar-qr/${asignaturaId}/${asignaturaNombre}`]);
   }
 
   constructor() { }

@@ -11,13 +11,14 @@ import { RegistrarseComponent } from './registrarse/registrarse.component';
 import { IniciarSesionComponent } from './iniciar-sesion/iniciar-sesion.component';
 import { CerrarSesionComponent } from './cerrar-sesion/cerrar-sesion.component';
 import { CompartidoModule } from '../compartido/compartido.module';
-import { InicioComponent } from './inicio/inicio.component';
 import { RouterLink } from '@angular/router';
 import { MostrarQrComponent } from './mostrar-qr/mostrar-qr.component';
+import { InicioComponent } from './inicio/inicio.component';
 
 
 @NgModule({
   declarations: [
+    InicioComponent,
     AlumnoComponent,
     DocenteComponent,
     PagNoEncontradaComponent,
@@ -25,7 +26,6 @@ import { MostrarQrComponent } from './mostrar-qr/mostrar-qr.component';
     CerrarSesionComponent,
     RegistrarseComponent,
     AsistenciaComponent,
-    InicioComponent,
     MostrarQrComponent,
   ],
   imports: [

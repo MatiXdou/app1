@@ -19,13 +19,13 @@ export class IniciarSesionComponent  implements OnInit {
   private router = inject(Router);
   private alertController = inject(AlertController);
 
-  isAuthenticated: boolean;
+  estaAutenticado: boolean;
   usuarioCompleto: UsuarioAPI;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.authService.isAuthenticated$.subscribe(isAuthenticated => this.isAuthenticated = isAuthenticated);
+    this.authService.estaAutenticado$.subscribe(estaAutenticado => this.estaAutenticado = estaAutenticado);
     this.authService.usuarioCompleto$.subscribe(usuarioCompleto => this.usuarioCompleto = usuarioCompleto);
   }
 
@@ -33,7 +33,7 @@ export class IniciarSesionComponent  implements OnInit {
     this.cargando = true;
     await this.authService.buscarUsuario(usuario, contra);
 
-    if (this.isAuthenticated) {
+    if (this.estaAutenticado) {
       this.usuario = '';
       this.contra = '';
       if (this.usuarioCompleto.rol === "docente") {

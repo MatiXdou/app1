@@ -14,6 +14,7 @@ export class MostrarQrComponent  implements OnInit, OnDestroy {
   usuario: string;
   subscriptionAuthService: Subscription;
   asignaturaId: string;
+  asignaturaNombre: string;
 
   private route = inject(ActivatedRoute);
 
@@ -52,6 +53,7 @@ export class MostrarQrComponent  implements OnInit, OnDestroy {
 
     this.route.paramMap.subscribe(params => {
       this.asignaturaId = params.get('id');
+      this.asignaturaNombre = params.get('nombre');
     });
   }
 

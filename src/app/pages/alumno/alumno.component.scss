@@ -1,4 +1,4 @@
-.asignatura-container {
+#container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -7,7 +7,7 @@
   min-width: 80%;
 }
 
-.asignatura-nombre {
+#nombre {
   font-size: 16px;
   font-weight: bold;
 }

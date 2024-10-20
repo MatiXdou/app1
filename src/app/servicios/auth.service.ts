@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject} from 'rxjs';
 import { WebService } from './web.service';
 import { UsuarioAPI } from '../models/usuarioapi.models';
 
@@ -7,8 +7,8 @@ import { UsuarioAPI } from '../models/usuarioapi.models';
   providedIn: 'root'
 })
 export class AuthService {
-  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
-  isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
+  private estaAutenticadoSubject = new BehaviorSubject<boolean>(false);
+  estaAutenticado$ = this.estaAutenticadoSubject.asObservable();
 
   private usuarioSubject = new BehaviorSubject<string>('');
   usuario$ = this.usuarioSubject.asObservable();
@@ -24,11 +24,11 @@ export class AuthService {
     const res = await this.webservice.request('GET', url, 'users') as Array<UsuarioAPI>;
     const user = res.find(u => u.user === usuario && u.pass === clave);
     if (user) {
-      this.isAuthenticatedSubject.next(true);
+      this.estaAutenticadoSubject.next(true);
       this.usuarioSubject.next(user.name);
       this.usuarioCompletoSubject.next(user);
     } else {
-      this.isAuthenticatedSubject.next(false);
+      this.estaAutenticadoSubject.next(false);
     }
   }
 
@@ -63,11 +63,11 @@ export class AuthService {
   cerrarSesion(): void {
     this.usuarioSubject.next('');
     this.usuarioCompletoSubject.next(null);
-    this.isAuthenticatedSubject.next(false);
+    this.estaAutenticadoSubject.next(false);
   }
 
-  isLoggedIn() {
-    return this.isAuthenticated$;
+  estaLogueado() {
+    return this.estaAutenticado$;
   }
 
 }
