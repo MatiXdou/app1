@@ -44,6 +44,11 @@ export class RegistrarseComponent implements OnInit {
 
     try {
       await this.authService.registrarUsuario(usuarioNuevo);
+      this.usuario = '';
+      this.contra = '';
+      this.nombreCompleto = '';
+      this.telefono = '';
+      this.rol = 'alumno';
       this.cargando = false;
       this.mensaje = 'Usuario registrado de manera exitosa.';
       await this.mostrarMensaje('Éxito', this.mensaje);
